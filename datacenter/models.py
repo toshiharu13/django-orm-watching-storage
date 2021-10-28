@@ -9,6 +9,19 @@ def format_duration(duration):
     seconds = delta_sec - (hours * 3600) - (minutes * 60)
     return f'{int(hours)}:{int(minutes)}:{int(seconds)}'
 
+def get_duration(visit, time_out=None):
+    if time_out:
+        delta = time_out - visit
+    else:
+        delta = localtime() - visit
+    return delta.total_seconds()
+
+
+def long_or_not(delta_sec):
+    if delta_sec > 3600:
+        return True
+    return False
+
 
 class Passcard(models.Model):
     is_active = models.BooleanField(default=False)
@@ -28,11 +41,31 @@ class Visit(models.Model):
     entered_at = models.DateTimeField()
     leaved_at = models.DateTimeField(null=True)
 
-    def get_duration(self):
+    def get_duration_in(self):
         time_in = self.entered_at
-        now = localtime()
-        delta = now - time_in
-        return format_duration(delta.total_seconds())
+        if self.leaved_at:
+            time_out = self.leaved_at
+            delta_sec = get_duration(time_in, time_out)
+        else:
+            delta_sec = get_duration(time_in)
+        return format_duration(delta_sec)
+
+    def is_visit_long_in(self):
+        time_in = self.entered_at
+        if self.leaved_at:
+            time_out = self.leaved_at
+            delta_sec = get_duration(time_in, time_out)
+        else:
+            delta_sec = get_duration(time_in)
+        return long_or_not(delta_sec)
+
+    '''def is_visit_long_out(self):
+        time_in = self.entered_at
+        time_out = self.leaved_at
+        delta_sec = get_duration(time_in, time_out)
+        return long_or_not(delta_sec)'''
+
+
 
     def __str__(self):
         return '{user} entered at {entered} {leaved}'.format(
