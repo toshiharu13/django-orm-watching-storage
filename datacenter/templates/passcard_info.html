@@ -33,7 +33,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {% for visit in passcard %}
+                    {% for visit in list_of_visits %}
                     <tr>
                         <td class="table-element">{{ forloop.counter }}</td>
                             <td class="table-element"><strong>{{ visit.entered_at }}</strong></td>
