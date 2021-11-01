@@ -8,10 +8,9 @@ def format_duration(duration):
     :param duration: промежуток в секундах
     :return:  промежуток времени в формате чч:мм:сс
     """
-    delta_sec = duration
-    hours = delta_sec // 3600
-    minutes = (delta_sec - (hours * 3600)) // 60
-    seconds = delta_sec - (hours * 3600) - (minutes * 60)
+    hours = duration // 3600
+    minutes = (duration - (hours * 3600)) // 60
+    seconds = duration - (hours * 3600) - (minutes * 60)
     return f'{int(hours)}:{int(minutes)}:{int(seconds)}'
 
 
@@ -29,10 +28,14 @@ def get_duration(visit, time_out=None):
     return delta.total_seconds()
 
 
-def long_or_not(delta_sec):
-    if delta_sec > 3600:
-        return True
-    return False
+def check_time_duration(delta_sec):
+    """
+    Функция проверки промежутка времени, укладывается ли в час
+    :param delta_sec: промежуток времени
+    :return: TRU/False
+    """
+    result = delta_sec > 3600
+    return result
 
 
 class Passcard(models.Model):
@@ -69,7 +72,7 @@ class Visit(models.Model):
             delta_sec = get_duration(time_in, time_out)
         else:
             delta_sec = get_duration(time_in)
-        return long_or_not(delta_sec)
+        return check_time_duration(delta_sec)
 
     def __str__(self):
         return '{user} entered at {entered} {leaved}'.format(
