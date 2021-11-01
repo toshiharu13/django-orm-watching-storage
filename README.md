@@ -11,6 +11,7 @@
 Для установки дастоточно:
  - склонировать проект
  - установить requirements.txt
+ 
 
 
       $ pip install -r requirements.txt
