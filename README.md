@@ -9,9 +9,10 @@
 
 ##  Установка
 Для установки дастоточно:
- - склонировать проект
- - установить requirements.txt
- 
+Cклонировать проект
 
+    $ git clone https://github.com/toshiharu13/django-orm-watching-storage.git
+
+Установить requirements.txt
 
       $ pip install -r requirements.txt
