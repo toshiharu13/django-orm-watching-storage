@@ -9,6 +9,7 @@
 
 ##  Установка
 Для установки дастоточно:
+
 Cклонировать проект
 
     $ git clone https://github.com/toshiharu13/django-orm-watching-storage.git
