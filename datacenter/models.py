@@ -3,6 +3,11 @@ from django.utils.timezone import localtime
 
 
 def format_duration(duration):
+    """
+    Функция вывода временного промежутка
+    :param duration: промежуток в секундах
+    :return:  промежуток времени в формате чч:мм:сс
+    """
     delta_sec = duration
     hours = delta_sec // 3600
     minutes = (delta_sec - (hours * 3600)) // 60
@@ -11,6 +16,12 @@ def format_duration(duration):
 
 
 def get_duration(visit, time_out=None):
+    """
+    Функция подсчета в секундах нахождения сотрудника в красной зоне
+    :param visit: вход в зону
+    :param time_out: выход из зоны при его наличие
+    :return: время в секундах нахождения сотрудника
+    """
     if time_out:
         delta = time_out - visit
     else:

@@ -3,6 +3,9 @@ from django.shortcuts import render
 
 
 def storage_information_view(request):
+    """
+    Функция отображения посетителей красной зоны
+    """
     non_closed_visits = Visit.objects.filter(leaved_at=None)
     context = {
         'non_closed_visits': non_closed_visits,
