@@ -58,20 +58,14 @@ class Visit(models.Model):
 
     def get_duration_in(self):
         time_in = self.entered_at
-        if self.leaved_at:
-            time_out = self.leaved_at
-            delta_sec = get_duration(time_in, time_out)
-        else:
-            delta_sec = get_duration(time_in)
+        time_out = self.leaved_at
+        delta_sec = get_duration(time_in, time_out)
         return format_duration(delta_sec)
 
     def is_visit_long_in(self):
         time_in = self.entered_at
-        if self.leaved_at:
-            time_out = self.leaved_at
-            delta_sec = get_duration(time_in, time_out)
-        else:
-            delta_sec = get_duration(time_in)
+        time_out = self.leaved_at
+        delta_sec = get_duration(time_in, time_out)
         return check_time_duration(delta_sec)
 
     def __str__(self):
