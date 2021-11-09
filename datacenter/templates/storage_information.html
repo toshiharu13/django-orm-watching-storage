@@ -40,7 +40,7 @@
                         <td class="table-element">{{ forloop.counter }}</td>
                         <td class="table-element">{{ visit.passcard.owner_name }}</td>
                             <td class="table-element"><strong>{{ visit.entered_at }}</strong></td>
-                        <td class="table-element">{{ visit.get_duration_in }}</td>
+                        <td class="table-element">{{ visit.format_duration }}</td>
                         <td class="table-element">{{ visit.is_visit_long_in }}</td>
                     </tr>
                     {% endfor %}

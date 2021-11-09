@@ -2,32 +2,6 @@ from django.db import models
 from django.utils.timezone import localtime
 
 
-def format_duration(duration):
-    """
-    Функция вывода временного промежутка
-    :param duration: промежуток в секундах
-    :return:  промежуток времени в формате чч:мм:сс
-    """
-    hours = duration // 3600
-    minutes = (duration - (hours * 3600)) // 60
-    seconds = duration - (hours * 3600) - (minutes * 60)
-    return f'{int(hours)}:{int(minutes)}:{int(seconds)}'
-
-
-def get_duration(visit, time_out=None):
-    """
-    Функция подсчета в секундах нахождения сотрудника в красной зоне
-    :param visit: вход в зону
-    :param time_out: выход из зоны при его наличие
-    :return: время в секундах нахождения сотрудника
-    """
-    if time_out:
-        delta = time_out - visit
-    else:
-        delta = localtime() - visit
-    return delta.total_seconds()
-
-
 def check_time_duration(delta_sec):
     """
     Функция проверки промежутка времени, укладывается ли в час
@@ -59,14 +33,22 @@ class Visit(models.Model):
     def get_duration_in(self):
         time_in = self.entered_at
         time_out = self.leaved_at
-        delta_sec = get_duration(time_in, time_out)
-        return format_duration(delta_sec)
+        if time_out:
+            delta = time_out - time_in
+        else:
+            delta = localtime() - time_in
+        return int(delta.total_seconds())
 
     def is_visit_long_in(self):
-        time_in = self.entered_at
-        time_out = self.leaved_at
-        delta_sec = get_duration(time_in, time_out)
+        delta_sec = self.get_duration_in()
         return check_time_duration(delta_sec)
+
+    def format_duration(self):
+        delta_sec = self.get_duration_in()
+        hours = delta_sec // 3600
+        minutes = (delta_sec - (hours * 3600)) // 60
+        seconds = delta_sec - (hours * 3600) - (minutes * 60)
+        return f'{int(hours)}:{int(minutes)}:{int(seconds)}'
 
     def __str__(self):
         return '{user} entered at {entered} {leaved}'.format(
