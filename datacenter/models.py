@@ -2,16 +2,6 @@ from django.db import models
 from django.utils.timezone import localtime
 
 
-def check_time_duration(delta_sec):
-    """
-    Функция проверки промежутка времени, укладывается ли в час
-    :param delta_sec: промежуток времени
-    :return: TRU/False
-    """
-    result = delta_sec > 3600
-    return result
-
-
 class Passcard(models.Model):
     is_active = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now=True)
@@ -41,7 +31,7 @@ class Visit(models.Model):
 
     def is_visit_long_in(self):
         delta_sec = self.get_duration_in()
-        return check_time_duration(delta_sec)
+        return delta_sec > 3600
 
     def format_duration(self):
         delta_sec = self.get_duration_in()
