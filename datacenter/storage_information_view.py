@@ -2,7 +2,7 @@ from datacenter.models import Visit
 from django.shortcuts import render
 
 
-def storage_information_view(request):
+def viewing_storage_information(request):
     """
     Функция отображения посетителей красной зоны
     """

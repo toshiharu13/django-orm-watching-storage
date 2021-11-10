@@ -2,7 +2,7 @@ from datacenter.models import Visit
 from django.shortcuts import render
 
 
-def view_passcard_info(request, passcode):
+def viewing_passcard_info(request, passcode):
     """
     Функция отображения информации пропуска сотрудника
     """
