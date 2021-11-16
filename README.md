@@ -22,3 +22,7 @@ Cклонировать проект
 Установить requirements.txt
 
       $ pip install -r requirements.txt
+## Запуск
+
+      $ python manage.py runserver 0.0.0.0:8000
+
