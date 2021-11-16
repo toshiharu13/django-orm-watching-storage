@@ -10,7 +10,6 @@
 ## Системные требования
 - [Python 3](https://www.python.org/)
 - [Django 1.11](https://www.djangoproject.com/)
-- Linux OS
 
 
 ##  Установка
