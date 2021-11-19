@@ -6,11 +6,11 @@ load_dotenv()
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'HOST': os.getenv('DEVMAN_HOST'),
-        'PORT': os.getenv('DEVMAN_BASE_PORT'),
-        'NAME': os.getenv('DEVMAN_BASE_NAME'),
-        'USER': os.getenv('DEVMAN_BASE_USER'),
-        'PASSWORD': os.getenv('DEVMAN_BASE_PASSWORD'),
+        'HOST': os.getenv('HOST'),
+        'PORT': os.getenv('BASE_PORT'),
+        'NAME': os.getenv('BASE_NAME'),
+        'USER': os.getenv('BASE_USER'),
+        'PASSWORD': os.getenv('BASE_PASSWORD'),
     }
 }
 
@@ -18,7 +18,7 @@ INSTALLED_APPS = ['datacenter']
 
 SECRET_KEY = 'REPLACE_ME'
 
-DEBUG = os.getenv('DEBUG_ON_OFF')
+DEBUG = os.getenv('DEBUG_ON_OFF', default='true')
 
 ROOT_URLCONF = "project.urls"
 
