@@ -22,7 +22,7 @@ INSTALLED_APPS = ['datacenter']
 
 SECRET_KEY = 'REPLACE_ME'
 
-DEBUG = os.getenv('DEBUG_ON_OFF', default='True')
+DEBUG = env.bool('DEBUG_ON_OFF', False)
 #DEBUG = False
 
 ROOT_URLCONF = 'project.urls'
