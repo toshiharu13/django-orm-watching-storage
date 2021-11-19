@@ -31,6 +31,7 @@ Cклонировать проект
  - BASE_NAME=<имя БД>
  - BASE_USER=<пользователь БД>
  - BASE_PASSWORD=<пароль пользователя БД>
+ - TRUSTED_HOSTS=<список даверенных хостов(ALLOWED_HOSTS) через запятую>
  - DEBUG_ON_OFF=<режим дебага true/false>
 
 DEBUG_ON_OFF не является обязательным, если его не указывать, debug примет значение true.
