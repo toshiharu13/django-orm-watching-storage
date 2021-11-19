@@ -20,7 +20,7 @@ SECRET_KEY = 'REPLACE_ME'
 
 DEBUG = os.getenv('DEBUG_ON_OFF', default='true')
 
-ROOT_URLCONF = "project.urls"
+ROOT_URLCONF = 'project.urls'
 
 ALLOWED_HOSTS = ['*']
 
