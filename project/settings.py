@@ -20,7 +20,7 @@ DATABASES = {
 
 INSTALLED_APPS = ['datacenter']
 
-SECRET_KEY = 'REPLACE_ME'
+SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
 
 DEBUG = env.bool('DEBUG_ON_OFF', False)
 
