@@ -7,20 +7,11 @@ load_dotenv()
 env = Env()
 env.read_env()
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'HOST': os.getenv('HOST'),
-        'PORT': os.getenv('BASE_PORT'),
-        'NAME': os.getenv('BASE_NAME'),
-        'USER': os.getenv('BASE_USER'),
-        'PASSWORD': os.getenv('BASE_PASSWORD'),
-    }
-}
+DATABASES = {'default': env.dj_db_url('DATABASE_URL')}
 
 INSTALLED_APPS = ['datacenter']
 
-SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
+SECRET_KEY = env.str('DJANGO_SECRET_KEY')
 
 DEBUG = env.bool('DEBUG_ON_OFF', False)
 
